@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2023 at 04:26 PM
+-- Generation Time: Feb 06, 2023 at 06:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -31,9 +31,16 @@ CREATE TABLE `attendacne` (
   `id` int(11) NOT NULL,
   `staff_id` int(11) NOT NULL,
   `date_` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `attendance` enum('present','absent') NOT NULL,
+  `attendance` enum('not_marked','present','absent') NOT NULL DEFAULT 'not_marked',
   `hr_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attendacne`
+--
+
+INSERT INTO `attendacne` (`id`, `staff_id`, `date_`, `attendance`, `hr_id`) VALUES
+(1, 1, '2023-01-31 23:00:00', 'present', 2);
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,7 @@ ALTER TABLE `attendacne`
 -- AUTO_INCREMENT for table `attendacne`
 --
 ALTER TABLE `attendacne`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

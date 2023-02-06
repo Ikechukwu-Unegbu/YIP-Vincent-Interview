@@ -57,6 +57,11 @@ $result = $result->fetch_all();
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="static_asset/css/style.css">
+    <style>
+      .absent{
+        background-color: red;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -153,12 +158,27 @@ $result = $result->fetch_all();
                      echo  '<tr>';
                       echo '<th scope="row">'.$l.'</th>';
                         foreach($result as $r){
-                          if($helper->marked($conn, $l, $r[0])){
-                            echo '<th> <a  class='.'marked'.' href=core/mark.php/'.$r[0].'/'.$l.'>Mark present<a/> </th>';
-                          }else{
-                            echo '<th> <a href=core/mark.php/'.$r[0].'/'.$l.'>Mark present<a/> </th>';
+                          if($helper->marked_type($conn, $l, $r[0]) == 'present'){
+                            echo '<th class='.'marked'.'> 
+                              <a class='.'present'.'  href=core/mark.php/'.$r[0].'/'.$l.'/present'.'> present<a/>
+                              <a  href=core/mark.php/'.$r[0].'/'.$l.'/present'.'> absent<a/> 
+                              </th>';
+                            // echo '<th> <a  class='.'marked'.' href=core/mark.php/'.$r[0].'/'.$l.'>absent<a/> </th>';
+                          }elseif($helper->marked_type($conn, $l, $r[0]) == 'absent'){
+                            echo '<th  class='.'absent'.' style='.'background-color:red !important;'.'> 
+                                <a  href=core/mark.php/'.$r[0].'/'.$l.'/present'.'>present<a/>
+                                <a   href=core/mark.php/'.$r[0].'/'.$l.'/absent'.'>absent<a/>
+                              </th>';
+                            // echo '<th> <a href=core/mark.php/'.$r[0].'/'.$l.'>present<a/> </th>';
+                          }
+                          else{
+                            echo '<th  class='.'not'.'> 
+                            <a  href=core/mark.php/'.$r[0].'/'.$l.'/present'.'>present<a/>
+                            <a   href=core/mark.php/'.$r[0].'/'.$l.'/absent'.'>absent<a/>
+                          </th>';
                           }
                         }
+                     
                       echo '</tr>';
                     }
                  ?>

@@ -2,8 +2,19 @@ form{
     display: flex;
     flex-direction: row;
 }
-
+a{
+    text-align: none !important;
+}
 .marked {
-    color: greenyellow !important;
+    background-color: gainsboro !important;
     text-decoration: none !important;
+}
+
+.absent{
+    background-color: rgb(246, 192, 192) !important;
+    text-decoration: none !important;
+}
+
+.not{
+ background-color: rgb(153, 153, 244);   
 }
