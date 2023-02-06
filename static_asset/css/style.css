@@ -1,0 +1,9 @@
+form{
+    display: flex;
+    flex-direction: row;
+}
+
+.marked {
+    color: greenyellow !important;
+    text-decoration: none !important;
+}
